@@ -1,0 +1,11 @@
+{
+  "name": "proyecto-final-finanzas",
+  "version": "1.0.0",
+  "description": "Aplicación de finanzas personales (servir estático)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT"
+}

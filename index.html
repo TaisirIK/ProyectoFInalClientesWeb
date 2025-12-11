@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finanzas personales</title>
+  <link rel="stylesheet" href="./style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Inline SVG symbols -->
+  <svg style="display:none;">
+    <symbol id="icon-rune" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" fill="#c59d3d" />
+      <text x="12" y="16" font-size="12" text-anchor="middle" fill="#000" font-family="Cinzel">ᚱ</text>
+    </symbol>
+  </svg>
+  <header class="app-header">
+    <h1 class="brand">Runas — Finanzas personales</h1>
+    <nav class="nav">
+      <button data-route="dashboard">Dashboard</button>
+      <button data-route="transacciones">Transacciones</button>
+      <button data-route="categorias">Categorías</button>
+      <button data-route="presupuestos">Presupuestos</button>
+      <div class="month-picker">
+        <label for="monthSelect">Mes:</label>
+        <input type="month" id="monthSelect"/>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app-root"></main>
+
+  <footer class="app-footer">
+    <small>Persistencia local con IndexedDB · Gráficos con Chart.js</small>
+  </footer>
+
+  <script type="module">
+    import { initDB } from './jsDB.js';
+    import { initRouter } from './jsRouter.js';
+    import { setSelectedMonth, initState, preloadDefaults } from './jsState.js';
+    import { renderRoute } from './jsApp.js';
+
+    (async () => {
+      await initDB();
+      await preloadDefaults(); // crea categorías predefinidas si no existen
+      initState();
+
+      // inicializar selector de mes
+      const monthInput = document.getElementById('monthSelect');
+      const now = new Date();
+      monthInput.value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+      setSelectedMonth(monthInput.value);
+      monthInput.addEventListener('change', (e) => {
+        setSelectedMonth(e.target.value);
+        renderRoute(); // refresca vista y gráficos
+      });
+
+      initRouter();
+      renderRoute();
+    })();
+  </script>
+</body>
+</html>
