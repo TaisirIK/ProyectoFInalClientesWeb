@@ -1,5 +1,5 @@
 
-import { fmtCurrency } from '../ProyectoFinalClientes/commit2/jsUtils.js';
+import { fmtCurrency } from './jsUtils.js';
 
 export const ChartManager = {
 	instances: {},

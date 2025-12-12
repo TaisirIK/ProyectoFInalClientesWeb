@@ -1,5 +1,7 @@
 import { db } from './jsDB.js';
-import { yyyymm } from '../ProyectoFinalClientes/commit2/jsUtils.js';
+// Event hub for cross-component notifications (no circular imports)
+export const appEvents = new EventTarget();
+import { yyyymm } from './jsUtils.js';
 
 const state = { route: 'dashboard', selectedMonth: yyyymm(new Date()) };
 
@@ -13,7 +15,7 @@ export const preloadDefaults = async () => {
 	const store = tx.objectStore('categorias');
 	const all = await store.getAll();
 	if (all.length === 0) {
-		const defaults = ['Alimentación','Transporte','Ocio','Servicios','Salud','Educación','Otros'];
+		const defaults = ['Armas','Consumibles','Crafteables','Recuerdos','Salud','Encantamientos','Otros'];
 		const wtx = db.transaction('categorias', 'readwrite');
 		const wstore = wtx.objectStore('categorias');
 		for (const name of defaults) { await wstore.add({ id: crypto.randomUUID(), nombre: name, createdAt: Date.now() }); }

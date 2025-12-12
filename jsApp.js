@@ -1,4 +1,3 @@
-// Legacy wrapper — re-exporting to new module location
 import { getState } from './jsState.js';
 import { Dashboard } from './jsComponents(Dashboard).js';
 import { Categorias } from './jsComponents(categorias).js';

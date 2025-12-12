@@ -6,11 +6,9 @@
   <title>Finanzas personales</title>
   <link rel="stylesheet" href="./style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- Inline SVG symbols -->
   <svg style="display:none;">
     <symbol id="icon-rune" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <circle cx="12" cy="12" r="10" fill="#c59d3d" />
@@ -45,17 +43,16 @@
 
     (async () => {
       await initDB();
-      await preloadDefaults(); // crea categorías predefinidas si no existen
+      await preloadDefaults(); 
       initState();
 
-      // inicializar selector de mes
       const monthInput = document.getElementById('monthSelect');
       const now = new Date();
       monthInput.value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
       setSelectedMonth(monthInput.value);
       monthInput.addEventListener('change', (e) => {
         setSelectedMonth(e.target.value);
-        renderRoute(); // refresca vista y gráficos
+        renderRoute(); 
       });
 
       initRouter();

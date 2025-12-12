@@ -1,6 +1,6 @@
 import { DB } from './jsDB.js';
 import { getState } from './jsState.js';
-import { fmtCurrencyHTML as fmtCurrency } from '../ProyectoFinalClientes/commit2/jsUtils.js';
+import { fmtCurrencyHTML as fmtCurrency } from './jsUtils.js';
 import { ChartManager, buildDonutGastosPorCategoria, buildLineBalanceRealVsEstimado, buildBarEgresosEstimadosVsReales, buildLineEvolucionBalanceAnual, buildBarDistribucionIngresosVsGastos } from './jsCharts.js';
 
 export const Dashboard = async () => {
