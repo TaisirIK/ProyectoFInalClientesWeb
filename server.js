@@ -29,7 +29,6 @@ const server = http.createServer((req, res) => {
     let filePath = urlPath === '/' ? '/index.html' : urlPath;
     filePath = path.join(base, filePath);
 
-    // Security: prevent path traversal
     if (!filePath.startsWith(base)) {
       send404(res);
       return;
@@ -67,6 +66,5 @@ server.listen(port, () => {
   console.log(`Static server running at http://localhost:${port}/`);
 });
 
-// Graceful exit handling
 process.on('SIGINT', () => process.exit());
 process.on('SIGTERM', () => process.exit());

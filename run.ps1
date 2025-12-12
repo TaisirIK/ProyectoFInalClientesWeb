@@ -1,5 +1,4 @@
-# Run the local static server for this project and open the browser.
-# Usage: open a PowerShell terminal in the `ProyectoFinal` folder and run `./run.ps1`
+
 
 $port = 8000
 $root = Split-Path -Parent $MyInvocation.MyCommand.Definition
